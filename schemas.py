@@ -38,6 +38,12 @@ class Product(BaseModel):
     rating: Optional[float] = Field(4.2, ge=0, le=5, description="Average rating")
     in_stock: bool = Field(True, description="Whether product is in stock")
 
+class Review(BaseModel):
+    product_id: str
+    user_name: str
+    rating: float = Field(..., ge=0, le=5)
+    comment: Optional[str] = None
+
 class CartItem(BaseModel):
     product_id: str
     quantity: int = Field(1, ge=1, le=10)
